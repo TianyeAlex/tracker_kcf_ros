@@ -29,7 +29,7 @@ float h_linear_speed = -0.1;
 
 float k_rotation_speed = 0.004;
 float h_rotation_speed_left = 1.2;
-float h_rotation_speed_right = -1.36;
+float h_rotation_speed_right = 1.36;
  
 int ERROR_OFFSET_X_left1 = 100;
 int ERROR_OFFSET_X_left2 = 300;
