@@ -79,7 +79,7 @@ and on any theory of liability, whether in contract, strict liability,
 or tort (including negligence or otherwise) arising in any way out of
 the use of this software, even if advised of the possibility of such damage.
  */
-
+#include <iostream>
 #ifndef _KCFTRACKER_HEADERS
 #include "kcftracker.hpp"
 #include "ffttools.hpp"
@@ -237,8 +237,12 @@ cv::Point2f KCFTracker::detect(cv::Mat z, cv::Mat x, float &peak_value)
     //minMaxLoc only accepts doubles for the peak, and integer points for the coordinates
     cv::Point2i pi;
     double pv;
-    cv::minMaxLoc(res, NULL, &pv, NULL, &pi);
+
+    cv::Point2i pi_min;
+    double pv_min;
+    cv::minMaxLoc(res, &pv_min, &pv, &pi_min, &pi);
     peak_value = (float) pv;
+    std::cout << "min reponse : " << pv_min << " max response :" << pv << std::endl;
 
     //subpixel peak estimation, coordinates will be non-integer
     cv::Point2f p((float)pi.x, (float)pi.y);

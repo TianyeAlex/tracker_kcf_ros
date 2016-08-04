@@ -16,16 +16,19 @@
 #include "kcftracker.hpp"
 
 static const std::string RGB_WINDOW = "RGB Image window";
-static const std::string DEPTH_WINDOW = "DEPTH Image window";
+//static const std::string DEPTH_WINDOW = "DEPTH Image window";
 
-#define Max_linear_speed 0.5
-#define Max_rotation_speed 0.8
+#define Max_linear_speed 0.6
+#define Min_linear_speed 0.4
+#define Min_distance 1.5
+#define Max_distance 5.0
+#define Max_rotation_speed 0.75
 
 float linear_speed = 0;
 float rotation_speed = 0;
 
-float k_linear_speed = 0.3;
-float h_linear_speed = -0.1;
+float k_linear_speed = (Max_linear_speed - Min_linear_speed) / (Max_distance - Min_distance);
+float h_linear_speed = Min_linear_speed - k_linear_speed * Min_distance;
 
 float k_rotation_speed = 0.004;
 float h_rotation_speed_left = 1.2;
@@ -103,13 +106,13 @@ public:
     pub = nh_.advertise<geometry_msgs::Twist>("tracker/cmd_vel", 1000);
 
     cv::namedWindow(RGB_WINDOW);
-    cv::namedWindow(DEPTH_WINDOW);
+    //cv::namedWindow(DEPTH_WINDOW);
   }
 
   ~ImageConverter()
   {
     cv::destroyWindow(RGB_WINDOW);
-    cv::destroyWindow(DEPTH_WINDOW);
+    //cv::destroyWindow(DEPTH_WINDOW);
   }
 
   void imageCb(const sensor_msgs::ImageConstPtr& msg)
@@ -181,7 +184,7 @@ public:
       distance /= num_depth_points;
 
       //calculate linear speed
-      if(distance > 1.0)
+      if(distance > Min_distance)
         linear_speed = distance * k_linear_speed + h_linear_speed;
       else
         linear_speed = 0;
@@ -208,7 +211,7 @@ public:
       // std::cout <<  "distance = " << distance << std::endl;
     }
 
-  	cv::imshow(DEPTH_WINDOW, depthimage);
+  	//cv::imshow(DEPTH_WINDOW, depthimage);
   	cv::waitKey(1);
   }
 };
@@ -237,3 +240,4 @@ int main(int argc, char** argv)
 
 	return 0;
 }
+
