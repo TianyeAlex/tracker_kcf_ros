@@ -35,6 +35,8 @@ $catkin_make
 
 5.运行：
 
+运行前需要打开移动平台，运行地盘调用程序
+
 $rosrun track_pkg kcf_node
 
 
