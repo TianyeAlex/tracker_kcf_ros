@@ -14,7 +14,6 @@ Ubuntu 14.04 + ros indigo
 Aiibot
 
 
-
 # 运行：
 
 ## 1.首先启动ros环境：
@@ -32,6 +31,7 @@ $rostopic list
 ## 4.编译：
 ```
 $catkin_make
+$source devel/setup.bash
 ```
 ## 5.运行：
 
@@ -41,8 +41,12 @@ $catkin_make
 
 启动地盘程序：
 ```
-
-
+$roslaunch aiibot_bringup base_control.launch
+```
+启动追踪程序
+```
 $rosrun track_pkg kcf_node
+```
+## 6.使用程序
 
-
+程序启动后，在图像窗口内鼠标左键框选所要跟踪的目标
