@@ -35,7 +35,13 @@ $catkin_make
 ```
 ## 5.运行：
 
-运行前需要打开移动平台，运行移动平台启动程序 aiibot_bringup，程序链接：
+运行前需要打开移动平台，运行移动平台启动程序 aiibot_bringup
+
+程序链接：http://git.aiiage.com:9000/liu.f/aiibot_bringup
+
+启动地盘程序：
+```
+
 
 $rosrun track_pkg kcf_node
 
