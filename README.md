@@ -17,23 +17,23 @@ Aiibot
 
 #运行：
 
-1. 首先启动ros环境：
+1.首先启动ros环境：
 
 $roscore
 
-2. 运行ros打开深度相机的节点，发出可播放深度图像和rgb图像的topic：
+2.运行ros打开深度相机的节点，发出可播放深度图像和rgb图像的topic：
 
 $roslaunch openni_launch openni.launch
 
-3. 查看ros的topic列表中是否有深度图像和rgb图像的topic：
+3.查看ros的topic列表中是否有深度图像和rgb图像的topic：
 
 $rostopic list
 
-4. #编译：
+4.编译：
 
 $catkin_make
 
-#运行：
+5.运行：
 
 $rosrun track_pkg kcf_node
 
