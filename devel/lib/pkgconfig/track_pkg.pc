@@ -1,8 +1,0 @@
-prefix=/home/exbot/tracker_ws/devel
-
-Name: track_pkg
-Description: Description of track_pkg
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/exbot/tracker_ws/devel/lib 
-Requires: 

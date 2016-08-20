@@ -1,2 +1,0 @@
-track_pkg
--DCATKIN_DEVEL_PREFIX=/home/exbot/tracker_ws/devel -DCMAKE_INSTALL_PREFIX=/home/exbot/tracker_ws/install -G Unix Makefiles

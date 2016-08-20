@@ -69,7 +69,7 @@ void onMouse(int event, int x, int y, int, void*)
         selectRect.y = MIN(origin.y, y);
         selectRect.width = abs(x - origin.x);   
         selectRect.height = abs(y - origin.y);
-        //selectRect &= cv::Rect(0, 0, rgbimage.cols, rgbimage.rows);
+        selectRect &= cv::Rect(0, 0, rgbimage.cols, rgbimage.rows);
     }
     if (event == CV_EVENT_LBUTTONDOWN)
     {
@@ -134,6 +134,11 @@ public:
 
     if(bRenewROI)
     {
+        // if (selectRect.width <= 0 || selectRect.height <= 0)
+        // {
+        //     bRenewROI = false;
+        //     //continue;
+        // }
         tracker.init(selectRect, rgbimage);
         bBeginKCF = true;
         bRenewROI = false;
@@ -146,7 +151,9 @@ public:
         cv::rectangle(rgbimage, result, cv::Scalar( 0, 255, 255 ), 1, 8 );
         enable_get_depth = true;
     }
-    
+    else
+        cv::rectangle(rgbimage, selectRect, cv::Scalar(255, 0, 0), 2, 8, 0);
+
     cv::imshow(RGB_WINDOW, rgbimage);
     cv::waitKey(1);
   }
